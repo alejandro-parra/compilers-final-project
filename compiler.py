@@ -273,3 +273,156 @@ yacc.yacc()
 file = open("input.txt", "r")
 s = file.read()
 yacc.parse(s)
+
+
+# ----------------------------------GENERACION DE CODIGO INTERMEDIO---------------------------------------
+
+output = open("output.txt", "w")
+
+
+def parseInstruction(instruction):
+  # Guard para verificar que el dato sea tupla (y que la siguiente linea no truene)
+    if type(instruction) is not tuple:
+        return instruction
+
+    currentStatement = instruction[0]
+
+    # Switch para leer de que tipo de declaracion se trata
+    if currentStatement == "print":
+        parsedStatement = parseInstruction(instruction[1])
+        output.write(f'print {parsedStatement} \n')
+
+    elif currentStatement == "declare":
+        dataType = instruction[1]
+        id = instruction[2]
+        output.write(f'{dataType} {id} \n')
+
+    elif currentStatement == "declare_assign":
+        dataType = instruction[1]
+        id = instruction[2]
+        output.write(f'{dataType} {id} \n')
+        parsedStatement = parseInstruction(instruction[3])
+        output.write(f'{id} = {parsedStatement} \n')
+
+    elif currentStatement == "assign":
+        id = instruction[1]
+        parsedStatement = parseInstruction(instruction[2])
+        output.write(f'{id} = {parsedStatement} \n')
+
+    elif currentStatement == "operation":
+        leftStatement = parseInstruction(instruction[1])
+        operation = instruction[2]
+        rightStatement = parseInstruction(instruction[3])
+        addressCode = outputVariable()
+
+        output.write(
+            f'{addressCode} = {leftStatement} {operation} {rightStatement} \n')
+
+        return addressCode
+
+    elif currentStatement == "condition":
+        ifStatement = instruction[1]
+        elifStatements = instruction[2]
+        elseStatement = instruction[3]
+
+        condition = parseInstruction(ifStatement[1])
+        currentCheckpoint = outputLabel()
+        endingCheckpoint = outputLabel()
+        statements = ifStatement[2]
+        output.write(f'if {condition} fails, go to {currentCheckpoint}\n')
+
+        for statement in statements:
+            parseInstruction(statement)
+        output.write(f'go to {endingCheckpoint}\n')
+        output.write(f'label {currentCheckpoint}\n')
+
+        for elifStatement in elifStatements:
+            condition = parseInstruction(elifStatement[1])
+            statements = elifStatement[2]
+            currentCheckpoint = outputLabel()
+
+            output.write(f'if {condition} fails, go to {currentCheckpoint}\n')
+
+            for statement in statements:
+                parseInstruction(statement)
+
+            output.write(f'go to {endingCheckpoint}\n')
+            output.write(f'label {currentCheckpoint}\n')
+
+        if elseStatement is not None:
+            statements = elseStatement[1]
+
+            for statement in statements:
+                parseInstruction(statement)
+
+        output.write(f'label {endingCheckpoint}\n')
+
+    elif currentStatement == "for":
+        parseInstruction(instruction[1])
+        innerStatements = instruction[4]
+
+        startCheckpoint = outputLabel()
+        endingCheckpoint = outputLabel()
+
+        output.write(f'label {startCheckpoint}\n')
+
+        condition = parseInstruction(instruction[2])
+        output.write(f'if {condition} fails, go to {endingCheckpoint}\n')
+
+        for statement in innerStatements:
+            parseInstruction(statement)
+
+        output.write(f'go to {startCheckpoint}\n')
+        output.write(f'label {endingCheckpoint}\n')
+
+    elif currentStatement == "while":
+        statements = instruction[2]
+        startCheckpoint = outputLabel()
+        endingCheckpoint = outputLabel()
+        condition = parseInstruction(instruction[1])
+
+        output.write(f'label {startCheckpoint}\n')
+        output.write(f'if {condition} fails, go to {endingCheckpoint}\n')
+
+        for statement in statements:
+            parseInstruction(statement)
+
+        output.write(f'go to {startCheckpoint}\n')
+        output.write(f'label {endingCheckpoint}\n')
+
+    elif currentStatement == "do-while":
+        statements = instruction[2]
+        startCheckpoint = outputLabel()
+
+        output.write(f'go to {startCheckpoint}\n')
+
+        for statement in statements:
+            parseInstruction(statement)
+
+        condition = parseInstruction(instruction[1])
+        output.write(f'if {condition} fails, go to {startCheckpoint}\n')
+
+    else:
+        output.write(
+            f'-----ERROR: Unknown statement: {currentStatement}-----\n')
+
+
+def outputLabel():
+    global labelCounter
+    labelCounter += 1
+    return "L" + str(labelCounter)
+
+
+def outputVariable():
+    global variableCounter
+    variableCounter += 1
+    return "V" + str(variableCounter)
+
+
+variableCounter = -1
+labelCounter = -1
+
+# iniciamos a parsear y escribir los valores dentro del archivo output.txt
+for instruction in instructions:
+    parseInstruction(instruction)
+output.close()

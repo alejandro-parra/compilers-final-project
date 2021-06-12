@@ -1,0 +1,3335 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> statement
+Rule 2     statement -> print_stmt FINISH statement
+Rule 3     statement -> register_stmt FINISH statement
+Rule 4     statement -> condition_stmt statement
+Rule 5     statement -> for_stmt statement
+Rule 6     statement -> while_stmt statement
+Rule 7     statement -> empty
+Rule 8     expression -> expression AND expression
+Rule 9     expression -> expression OR expression
+Rule 10    expression -> expression PLUS expression
+Rule 11    expression -> expression MINUS expression
+Rule 12    expression -> expression MULT expression
+Rule 13    expression -> expression DIV expression
+Rule 14    expression -> expression EXP expression
+Rule 15    expression -> expression EQUALS expression
+Rule 16    expression -> expression NOT_EQUALS expression
+Rule 17    expression -> expression EQ_MORE expression
+Rule 18    expression -> expression EQ_LESS expression
+Rule 19    expression -> expression MORE expression
+Rule 20    expression -> expression LESS expression
+Rule 21    expression -> ID
+Rule 22    expression -> FLOAT_VAL
+Rule 23    expression -> INT_VAL
+Rule 24    expression -> STR_VAL
+Rule 25    expression -> bool_val
+Rule 26    bool_val -> TRUE
+Rule 27    bool_val -> FALSE
+Rule 28    expression -> LPAREN expression RPAREN
+Rule 29    expression -> MINUS expression
+Rule 30    print_stmt -> PRINT expression
+Rule 31    register_stmt -> declare_reg
+Rule 32    register_stmt -> declare_assign_reg
+Rule 33    register_stmt -> assign_reg
+Rule 34    condition_stmt -> if_cond elif_cond else_cond
+Rule 35    for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY
+Rule 36    while_stmt -> WHILE LPAREN expression RPAREN LKEY statement RKEY
+Rule 37    while_stmt -> DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH
+Rule 38    empty -> <empty>
+Rule 39    type -> BOOL
+Rule 40    type -> INT
+Rule 41    type -> FLOAT
+Rule 42    type -> STRING
+Rule 43    declare_reg -> type ID
+Rule 44    declare_assign_reg -> type ID ASSIGN expression
+Rule 45    assign_reg -> ID ASSIGN expression
+Rule 46    if_cond -> IF LPAREN expression RPAREN LKEY statement RKEY
+Rule 47    elif_cond -> ELIF LPAREN expression RPAREN LKEY statement RKEY elif_cond
+Rule 48    elif_cond -> empty
+Rule 49    else_cond -> ELSE LKEY statement RKEY
+Rule 50    else_cond -> empty
+
+Terminals, with rules where they appear
+
+AND                  : 8
+ASSIGN               : 44 45
+BOOL                 : 39
+DIV                  : 13
+DO                   : 37
+ELIF                 : 47
+ELSE                 : 49
+EQUALS               : 15
+EQ_LESS              : 18
+EQ_MORE              : 17
+EXP                  : 14
+FALSE                : 27
+FINISH               : 2 3 35 35 37
+FLOAT                : 41
+FLOAT_VAL            : 22
+FOR                  : 35
+ID                   : 21 43 44 45
+IF                   : 46
+INT                  : 40
+INT_VAL              : 23
+LESS                 : 20
+LKEY                 : 35 36 37 46 47 49
+LPAREN               : 28 35 36 37 46 47
+MINUS                : 11 29
+MORE                 : 19
+MULT                 : 12
+NOT_EQUALS           : 16
+OR                   : 9
+PLUS                 : 10
+PRINT                : 30
+RKEY                 : 35 36 37 46 47 49
+RPAREN               : 28 35 36 37 46 47
+STRING               : 42
+STR_VAL              : 24
+TRUE                 : 26
+WHILE                : 36 37
+error                : 
+
+Nonterminals, with rules where they appear
+
+assign_reg           : 33 35
+bool_val             : 25
+condition_stmt       : 4
+declare_assign_reg   : 32 35
+declare_reg          : 31
+elif_cond            : 34 47
+else_cond            : 34
+empty                : 7 48 50
+expression           : 8 8 9 9 10 10 11 11 12 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 28 29 30 35 36 37 44 45 46 47
+for_stmt             : 5
+if_cond              : 34
+print_stmt           : 2
+register_stmt        : 3
+start                : 0
+statement            : 1 2 3 4 5 6 35 36 37 46 47 49
+type                 : 43 44
+while_stmt           : 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . statement
+    (2) statement -> . print_stmt FINISH statement
+    (3) statement -> . register_stmt FINISH statement
+    (4) statement -> . condition_stmt statement
+    (5) statement -> . for_stmt statement
+    (6) statement -> . while_stmt statement
+    (7) statement -> . empty
+    (30) print_stmt -> . PRINT expression
+    (31) register_stmt -> . declare_reg
+    (32) register_stmt -> . declare_assign_reg
+    (33) register_stmt -> . assign_reg
+    (34) condition_stmt -> . if_cond elif_cond else_cond
+    (35) for_stmt -> . FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY
+    (36) while_stmt -> . WHILE LPAREN expression RPAREN LKEY statement RKEY
+    (37) while_stmt -> . DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH
+    (38) empty -> .
+    (43) declare_reg -> . type ID
+    (44) declare_assign_reg -> . type ID ASSIGN expression
+    (45) assign_reg -> . ID ASSIGN expression
+    (46) if_cond -> . IF LPAREN expression RPAREN LKEY statement RKEY
+    (39) type -> . BOOL
+    (40) type -> . INT
+    (41) type -> . FLOAT
+    (42) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    $end            reduce using rule 38 (empty -> .)
+    ID              shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INT             shift and go to state 21
+    FLOAT           shift and go to state 22
+    STRING          shift and go to state 23
+
+    start                          shift and go to state 1
+    statement                      shift and go to state 2
+    print_stmt                     shift and go to state 3
+    register_stmt                  shift and go to state 4
+    condition_stmt                 shift and go to state 5
+    for_stmt                       shift and go to state 6
+    while_stmt                     shift and go to state 7
+    empty                          shift and go to state 8
+    declare_reg                    shift and go to state 10
+    declare_assign_reg             shift and go to state 11
+    assign_reg                     shift and go to state 12
+    if_cond                        shift and go to state 13
+    type                           shift and go to state 17
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> statement .
+
+    $end            reduce using rule 1 (start -> statement .)
+
+
+state 3
+
+    (2) statement -> print_stmt . FINISH statement
+
+    FINISH          shift and go to state 24
+
+
+state 4
+
+    (3) statement -> register_stmt . FINISH statement
+
+    FINISH          shift and go to state 25
+
+
+state 5
+
+    (4) statement -> condition_stmt . statement
+    (2) statement -> . print_stmt FINISH statement
+    (3) statement -> . register_stmt FINISH statement
+    (4) statement -> . condition_stmt statement
+    (5) statement -> . for_stmt statement
+    (6) statement -> . while_stmt statement
+    (7) statement -> . empty
+    (30) print_stmt -> . PRINT expression
+    (31) register_stmt -> . declare_reg
+    (32) register_stmt -> . declare_assign_reg
+    (33) register_stmt -> . assign_reg
+    (34) condition_stmt -> . if_cond elif_cond else_cond
+    (35) for_stmt -> . FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY
+    (36) while_stmt -> . WHILE LPAREN expression RPAREN LKEY statement RKEY
+    (37) while_stmt -> . DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH
+    (38) empty -> .
+    (43) declare_reg -> . type ID
+    (44) declare_assign_reg -> . type ID ASSIGN expression
+    (45) assign_reg -> . ID ASSIGN expression
+    (46) if_cond -> . IF LPAREN expression RPAREN LKEY statement RKEY
+    (39) type -> . BOOL
+    (40) type -> . INT
+    (41) type -> . FLOAT
+    (42) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    $end            reduce using rule 38 (empty -> .)
+    RKEY            reduce using rule 38 (empty -> .)
+    ID              shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INT             shift and go to state 21
+    FLOAT           shift and go to state 22
+    STRING          shift and go to state 23
+
+    condition_stmt                 shift and go to state 5
+    statement                      shift and go to state 26
+    print_stmt                     shift and go to state 3
+    register_stmt                  shift and go to state 4
+    for_stmt                       shift and go to state 6
+    while_stmt                     shift and go to state 7
+    empty                          shift and go to state 8
+    declare_reg                    shift and go to state 10
+    declare_assign_reg             shift and go to state 11
+    assign_reg                     shift and go to state 12
+    if_cond                        shift and go to state 13
+    type                           shift and go to state 17
+
+state 6
+
+    (5) statement -> for_stmt . statement
+    (2) statement -> . print_stmt FINISH statement
+    (3) statement -> . register_stmt FINISH statement
+    (4) statement -> . condition_stmt statement
+    (5) statement -> . for_stmt statement
+    (6) statement -> . while_stmt statement
+    (7) statement -> . empty
+    (30) print_stmt -> . PRINT expression
+    (31) register_stmt -> . declare_reg
+    (32) register_stmt -> . declare_assign_reg
+    (33) register_stmt -> . assign_reg
+    (34) condition_stmt -> . if_cond elif_cond else_cond
+    (35) for_stmt -> . FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY
+    (36) while_stmt -> . WHILE LPAREN expression RPAREN LKEY statement RKEY
+    (37) while_stmt -> . DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH
+    (38) empty -> .
+    (43) declare_reg -> . type ID
+    (44) declare_assign_reg -> . type ID ASSIGN expression
+    (45) assign_reg -> . ID ASSIGN expression
+    (46) if_cond -> . IF LPAREN expression RPAREN LKEY statement RKEY
+    (39) type -> . BOOL
+    (40) type -> . INT
+    (41) type -> . FLOAT
+    (42) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    $end            reduce using rule 38 (empty -> .)
+    RKEY            reduce using rule 38 (empty -> .)
+    ID              shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INT             shift and go to state 21
+    FLOAT           shift and go to state 22
+    STRING          shift and go to state 23
+
+    for_stmt                       shift and go to state 6
+    statement                      shift and go to state 27
+    print_stmt                     shift and go to state 3
+    register_stmt                  shift and go to state 4
+    condition_stmt                 shift and go to state 5
+    while_stmt                     shift and go to state 7
+    empty                          shift and go to state 8
+    declare_reg                    shift and go to state 10
+    declare_assign_reg             shift and go to state 11
+    assign_reg                     shift and go to state 12
+    if_cond                        shift and go to state 13
+    type                           shift and go to state 17
+
+state 7
+
+    (6) statement -> while_stmt . statement
+    (2) statement -> . print_stmt FINISH statement
+    (3) statement -> . register_stmt FINISH statement
+    (4) statement -> . condition_stmt statement
+    (5) statement -> . for_stmt statement
+    (6) statement -> . while_stmt statement
+    (7) statement -> . empty
+    (30) print_stmt -> . PRINT expression
+    (31) register_stmt -> . declare_reg
+    (32) register_stmt -> . declare_assign_reg
+    (33) register_stmt -> . assign_reg
+    (34) condition_stmt -> . if_cond elif_cond else_cond
+    (35) for_stmt -> . FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY
+    (36) while_stmt -> . WHILE LPAREN expression RPAREN LKEY statement RKEY
+    (37) while_stmt -> . DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH
+    (38) empty -> .
+    (43) declare_reg -> . type ID
+    (44) declare_assign_reg -> . type ID ASSIGN expression
+    (45) assign_reg -> . ID ASSIGN expression
+    (46) if_cond -> . IF LPAREN expression RPAREN LKEY statement RKEY
+    (39) type -> . BOOL
+    (40) type -> . INT
+    (41) type -> . FLOAT
+    (42) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    $end            reduce using rule 38 (empty -> .)
+    RKEY            reduce using rule 38 (empty -> .)
+    ID              shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INT             shift and go to state 21
+    FLOAT           shift and go to state 22
+    STRING          shift and go to state 23
+
+    while_stmt                     shift and go to state 7
+    statement                      shift and go to state 28
+    print_stmt                     shift and go to state 3
+    register_stmt                  shift and go to state 4
+    condition_stmt                 shift and go to state 5
+    for_stmt                       shift and go to state 6
+    empty                          shift and go to state 8
+    declare_reg                    shift and go to state 10
+    declare_assign_reg             shift and go to state 11
+    assign_reg                     shift and go to state 12
+    if_cond                        shift and go to state 13
+    type                           shift and go to state 17
+
+state 8
+
+    (7) statement -> empty .
+
+    $end            reduce using rule 7 (statement -> empty .)
+    RKEY            reduce using rule 7 (statement -> empty .)
+
+
+state 9
+
+    (30) print_stmt -> PRINT . expression
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 29
+    bool_val                       shift and go to state 35
+
+state 10
+
+    (31) register_stmt -> declare_reg .
+
+    FINISH          reduce using rule 31 (register_stmt -> declare_reg .)
+
+
+state 11
+
+    (32) register_stmt -> declare_assign_reg .
+
+    FINISH          reduce using rule 32 (register_stmt -> declare_assign_reg .)
+
+
+state 12
+
+    (33) register_stmt -> assign_reg .
+
+    FINISH          reduce using rule 33 (register_stmt -> assign_reg .)
+
+
+state 13
+
+    (34) condition_stmt -> if_cond . elif_cond else_cond
+    (47) elif_cond -> . ELIF LPAREN expression RPAREN LKEY statement RKEY elif_cond
+    (48) elif_cond -> . empty
+    (38) empty -> .
+
+    ELIF            shift and go to state 40
+    ELSE            reduce using rule 38 (empty -> .)
+    PRINT           reduce using rule 38 (empty -> .)
+    FOR             reduce using rule 38 (empty -> .)
+    WHILE           reduce using rule 38 (empty -> .)
+    DO              reduce using rule 38 (empty -> .)
+    ID              reduce using rule 38 (empty -> .)
+    IF              reduce using rule 38 (empty -> .)
+    BOOL            reduce using rule 38 (empty -> .)
+    INT             reduce using rule 38 (empty -> .)
+    FLOAT           reduce using rule 38 (empty -> .)
+    STRING          reduce using rule 38 (empty -> .)
+    $end            reduce using rule 38 (empty -> .)
+    RKEY            reduce using rule 38 (empty -> .)
+
+    elif_cond                      shift and go to state 39
+    empty                          shift and go to state 41
+
+state 14
+
+    (35) for_stmt -> FOR . LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY
+
+    LPAREN          shift and go to state 42
+
+
+state 15
+
+    (36) while_stmt -> WHILE . LPAREN expression RPAREN LKEY statement RKEY
+
+    LPAREN          shift and go to state 43
+
+
+state 16
+
+    (37) while_stmt -> DO . LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH
+
+    LKEY            shift and go to state 44
+
+
+state 17
+
+    (43) declare_reg -> type . ID
+    (44) declare_assign_reg -> type . ID ASSIGN expression
+
+    ID              shift and go to state 45
+
+
+state 18
+
+    (45) assign_reg -> ID . ASSIGN expression
+
+    ASSIGN          shift and go to state 46
+
+
+state 19
+
+    (46) if_cond -> IF . LPAREN expression RPAREN LKEY statement RKEY
+
+    LPAREN          shift and go to state 47
+
+
+state 20
+
+    (39) type -> BOOL .
+
+    ID              reduce using rule 39 (type -> BOOL .)
+
+
+state 21
+
+    (40) type -> INT .
+
+    ID              reduce using rule 40 (type -> INT .)
+
+
+state 22
+
+    (41) type -> FLOAT .
+
+    ID              reduce using rule 41 (type -> FLOAT .)
+
+
+state 23
+
+    (42) type -> STRING .
+
+    ID              reduce using rule 42 (type -> STRING .)
+
+
+state 24
+
+    (2) statement -> print_stmt FINISH . statement
+    (2) statement -> . print_stmt FINISH statement
+    (3) statement -> . register_stmt FINISH statement
+    (4) statement -> . condition_stmt statement
+    (5) statement -> . for_stmt statement
+    (6) statement -> . while_stmt statement
+    (7) statement -> . empty
+    (30) print_stmt -> . PRINT expression
+    (31) register_stmt -> . declare_reg
+    (32) register_stmt -> . declare_assign_reg
+    (33) register_stmt -> . assign_reg
+    (34) condition_stmt -> . if_cond elif_cond else_cond
+    (35) for_stmt -> . FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY
+    (36) while_stmt -> . WHILE LPAREN expression RPAREN LKEY statement RKEY
+    (37) while_stmt -> . DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH
+    (38) empty -> .
+    (43) declare_reg -> . type ID
+    (44) declare_assign_reg -> . type ID ASSIGN expression
+    (45) assign_reg -> . ID ASSIGN expression
+    (46) if_cond -> . IF LPAREN expression RPAREN LKEY statement RKEY
+    (39) type -> . BOOL
+    (40) type -> . INT
+    (41) type -> . FLOAT
+    (42) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    $end            reduce using rule 38 (empty -> .)
+    RKEY            reduce using rule 38 (empty -> .)
+    ID              shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INT             shift and go to state 21
+    FLOAT           shift and go to state 22
+    STRING          shift and go to state 23
+
+    print_stmt                     shift and go to state 3
+    statement                      shift and go to state 48
+    register_stmt                  shift and go to state 4
+    condition_stmt                 shift and go to state 5
+    for_stmt                       shift and go to state 6
+    while_stmt                     shift and go to state 7
+    empty                          shift and go to state 8
+    declare_reg                    shift and go to state 10
+    declare_assign_reg             shift and go to state 11
+    assign_reg                     shift and go to state 12
+    if_cond                        shift and go to state 13
+    type                           shift and go to state 17
+
+state 25
+
+    (3) statement -> register_stmt FINISH . statement
+    (2) statement -> . print_stmt FINISH statement
+    (3) statement -> . register_stmt FINISH statement
+    (4) statement -> . condition_stmt statement
+    (5) statement -> . for_stmt statement
+    (6) statement -> . while_stmt statement
+    (7) statement -> . empty
+    (30) print_stmt -> . PRINT expression
+    (31) register_stmt -> . declare_reg
+    (32) register_stmt -> . declare_assign_reg
+    (33) register_stmt -> . assign_reg
+    (34) condition_stmt -> . if_cond elif_cond else_cond
+    (35) for_stmt -> . FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY
+    (36) while_stmt -> . WHILE LPAREN expression RPAREN LKEY statement RKEY
+    (37) while_stmt -> . DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH
+    (38) empty -> .
+    (43) declare_reg -> . type ID
+    (44) declare_assign_reg -> . type ID ASSIGN expression
+    (45) assign_reg -> . ID ASSIGN expression
+    (46) if_cond -> . IF LPAREN expression RPAREN LKEY statement RKEY
+    (39) type -> . BOOL
+    (40) type -> . INT
+    (41) type -> . FLOAT
+    (42) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    $end            reduce using rule 38 (empty -> .)
+    RKEY            reduce using rule 38 (empty -> .)
+    ID              shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INT             shift and go to state 21
+    FLOAT           shift and go to state 22
+    STRING          shift and go to state 23
+
+    register_stmt                  shift and go to state 4
+    statement                      shift and go to state 49
+    print_stmt                     shift and go to state 3
+    condition_stmt                 shift and go to state 5
+    for_stmt                       shift and go to state 6
+    while_stmt                     shift and go to state 7
+    empty                          shift and go to state 8
+    declare_reg                    shift and go to state 10
+    declare_assign_reg             shift and go to state 11
+    assign_reg                     shift and go to state 12
+    if_cond                        shift and go to state 13
+    type                           shift and go to state 17
+
+state 26
+
+    (4) statement -> condition_stmt statement .
+
+    $end            reduce using rule 4 (statement -> condition_stmt statement .)
+    RKEY            reduce using rule 4 (statement -> condition_stmt statement .)
+
+
+state 27
+
+    (5) statement -> for_stmt statement .
+
+    $end            reduce using rule 5 (statement -> for_stmt statement .)
+    RKEY            reduce using rule 5 (statement -> for_stmt statement .)
+
+
+state 28
+
+    (6) statement -> while_stmt statement .
+
+    $end            reduce using rule 6 (statement -> while_stmt statement .)
+    RKEY            reduce using rule 6 (statement -> while_stmt statement .)
+
+
+state 29
+
+    (30) print_stmt -> PRINT expression .
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    FINISH          reduce using rule 30 (print_stmt -> PRINT expression .)
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 30
+
+    (29) expression -> MINUS . expression
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 63
+    bool_val                       shift and go to state 35
+
+state 31
+
+    (21) expression -> ID .
+
+    AND             reduce using rule 21 (expression -> ID .)
+    OR              reduce using rule 21 (expression -> ID .)
+    PLUS            reduce using rule 21 (expression -> ID .)
+    MINUS           reduce using rule 21 (expression -> ID .)
+    MULT            reduce using rule 21 (expression -> ID .)
+    DIV             reduce using rule 21 (expression -> ID .)
+    EXP             reduce using rule 21 (expression -> ID .)
+    EQUALS          reduce using rule 21 (expression -> ID .)
+    NOT_EQUALS      reduce using rule 21 (expression -> ID .)
+    EQ_MORE         reduce using rule 21 (expression -> ID .)
+    EQ_LESS         reduce using rule 21 (expression -> ID .)
+    MORE            reduce using rule 21 (expression -> ID .)
+    LESS            reduce using rule 21 (expression -> ID .)
+    FINISH          reduce using rule 21 (expression -> ID .)
+    RPAREN          reduce using rule 21 (expression -> ID .)
+
+
+state 32
+
+    (22) expression -> FLOAT_VAL .
+
+    AND             reduce using rule 22 (expression -> FLOAT_VAL .)
+    OR              reduce using rule 22 (expression -> FLOAT_VAL .)
+    PLUS            reduce using rule 22 (expression -> FLOAT_VAL .)
+    MINUS           reduce using rule 22 (expression -> FLOAT_VAL .)
+    MULT            reduce using rule 22 (expression -> FLOAT_VAL .)
+    DIV             reduce using rule 22 (expression -> FLOAT_VAL .)
+    EXP             reduce using rule 22 (expression -> FLOAT_VAL .)
+    EQUALS          reduce using rule 22 (expression -> FLOAT_VAL .)
+    NOT_EQUALS      reduce using rule 22 (expression -> FLOAT_VAL .)
+    EQ_MORE         reduce using rule 22 (expression -> FLOAT_VAL .)
+    EQ_LESS         reduce using rule 22 (expression -> FLOAT_VAL .)
+    MORE            reduce using rule 22 (expression -> FLOAT_VAL .)
+    LESS            reduce using rule 22 (expression -> FLOAT_VAL .)
+    FINISH          reduce using rule 22 (expression -> FLOAT_VAL .)
+    RPAREN          reduce using rule 22 (expression -> FLOAT_VAL .)
+
+
+state 33
+
+    (23) expression -> INT_VAL .
+
+    AND             reduce using rule 23 (expression -> INT_VAL .)
+    OR              reduce using rule 23 (expression -> INT_VAL .)
+    PLUS            reduce using rule 23 (expression -> INT_VAL .)
+    MINUS           reduce using rule 23 (expression -> INT_VAL .)
+    MULT            reduce using rule 23 (expression -> INT_VAL .)
+    DIV             reduce using rule 23 (expression -> INT_VAL .)
+    EXP             reduce using rule 23 (expression -> INT_VAL .)
+    EQUALS          reduce using rule 23 (expression -> INT_VAL .)
+    NOT_EQUALS      reduce using rule 23 (expression -> INT_VAL .)
+    EQ_MORE         reduce using rule 23 (expression -> INT_VAL .)
+    EQ_LESS         reduce using rule 23 (expression -> INT_VAL .)
+    MORE            reduce using rule 23 (expression -> INT_VAL .)
+    LESS            reduce using rule 23 (expression -> INT_VAL .)
+    FINISH          reduce using rule 23 (expression -> INT_VAL .)
+    RPAREN          reduce using rule 23 (expression -> INT_VAL .)
+
+
+state 34
+
+    (24) expression -> STR_VAL .
+
+    AND             reduce using rule 24 (expression -> STR_VAL .)
+    OR              reduce using rule 24 (expression -> STR_VAL .)
+    PLUS            reduce using rule 24 (expression -> STR_VAL .)
+    MINUS           reduce using rule 24 (expression -> STR_VAL .)
+    MULT            reduce using rule 24 (expression -> STR_VAL .)
+    DIV             reduce using rule 24 (expression -> STR_VAL .)
+    EXP             reduce using rule 24 (expression -> STR_VAL .)
+    EQUALS          reduce using rule 24 (expression -> STR_VAL .)
+    NOT_EQUALS      reduce using rule 24 (expression -> STR_VAL .)
+    EQ_MORE         reduce using rule 24 (expression -> STR_VAL .)
+    EQ_LESS         reduce using rule 24 (expression -> STR_VAL .)
+    MORE            reduce using rule 24 (expression -> STR_VAL .)
+    LESS            reduce using rule 24 (expression -> STR_VAL .)
+    FINISH          reduce using rule 24 (expression -> STR_VAL .)
+    RPAREN          reduce using rule 24 (expression -> STR_VAL .)
+
+
+state 35
+
+    (25) expression -> bool_val .
+
+    AND             reduce using rule 25 (expression -> bool_val .)
+    OR              reduce using rule 25 (expression -> bool_val .)
+    PLUS            reduce using rule 25 (expression -> bool_val .)
+    MINUS           reduce using rule 25 (expression -> bool_val .)
+    MULT            reduce using rule 25 (expression -> bool_val .)
+    DIV             reduce using rule 25 (expression -> bool_val .)
+    EXP             reduce using rule 25 (expression -> bool_val .)
+    EQUALS          reduce using rule 25 (expression -> bool_val .)
+    NOT_EQUALS      reduce using rule 25 (expression -> bool_val .)
+    EQ_MORE         reduce using rule 25 (expression -> bool_val .)
+    EQ_LESS         reduce using rule 25 (expression -> bool_val .)
+    MORE            reduce using rule 25 (expression -> bool_val .)
+    LESS            reduce using rule 25 (expression -> bool_val .)
+    FINISH          reduce using rule 25 (expression -> bool_val .)
+    RPAREN          reduce using rule 25 (expression -> bool_val .)
+
+
+state 36
+
+    (28) expression -> LPAREN . expression RPAREN
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 64
+    bool_val                       shift and go to state 35
+
+state 37
+
+    (26) bool_val -> TRUE .
+
+    AND             reduce using rule 26 (bool_val -> TRUE .)
+    OR              reduce using rule 26 (bool_val -> TRUE .)
+    PLUS            reduce using rule 26 (bool_val -> TRUE .)
+    MINUS           reduce using rule 26 (bool_val -> TRUE .)
+    MULT            reduce using rule 26 (bool_val -> TRUE .)
+    DIV             reduce using rule 26 (bool_val -> TRUE .)
+    EXP             reduce using rule 26 (bool_val -> TRUE .)
+    EQUALS          reduce using rule 26 (bool_val -> TRUE .)
+    NOT_EQUALS      reduce using rule 26 (bool_val -> TRUE .)
+    EQ_MORE         reduce using rule 26 (bool_val -> TRUE .)
+    EQ_LESS         reduce using rule 26 (bool_val -> TRUE .)
+    MORE            reduce using rule 26 (bool_val -> TRUE .)
+    LESS            reduce using rule 26 (bool_val -> TRUE .)
+    FINISH          reduce using rule 26 (bool_val -> TRUE .)
+    RPAREN          reduce using rule 26 (bool_val -> TRUE .)
+
+
+state 38
+
+    (27) bool_val -> FALSE .
+
+    AND             reduce using rule 27 (bool_val -> FALSE .)
+    OR              reduce using rule 27 (bool_val -> FALSE .)
+    PLUS            reduce using rule 27 (bool_val -> FALSE .)
+    MINUS           reduce using rule 27 (bool_val -> FALSE .)
+    MULT            reduce using rule 27 (bool_val -> FALSE .)
+    DIV             reduce using rule 27 (bool_val -> FALSE .)
+    EXP             reduce using rule 27 (bool_val -> FALSE .)
+    EQUALS          reduce using rule 27 (bool_val -> FALSE .)
+    NOT_EQUALS      reduce using rule 27 (bool_val -> FALSE .)
+    EQ_MORE         reduce using rule 27 (bool_val -> FALSE .)
+    EQ_LESS         reduce using rule 27 (bool_val -> FALSE .)
+    MORE            reduce using rule 27 (bool_val -> FALSE .)
+    LESS            reduce using rule 27 (bool_val -> FALSE .)
+    FINISH          reduce using rule 27 (bool_val -> FALSE .)
+    RPAREN          reduce using rule 27 (bool_val -> FALSE .)
+
+
+state 39
+
+    (34) condition_stmt -> if_cond elif_cond . else_cond
+    (49) else_cond -> . ELSE LKEY statement RKEY
+    (50) else_cond -> . empty
+    (38) empty -> .
+
+    ELSE            shift and go to state 66
+    PRINT           reduce using rule 38 (empty -> .)
+    FOR             reduce using rule 38 (empty -> .)
+    WHILE           reduce using rule 38 (empty -> .)
+    DO              reduce using rule 38 (empty -> .)
+    ID              reduce using rule 38 (empty -> .)
+    IF              reduce using rule 38 (empty -> .)
+    BOOL            reduce using rule 38 (empty -> .)
+    INT             reduce using rule 38 (empty -> .)
+    FLOAT           reduce using rule 38 (empty -> .)
+    STRING          reduce using rule 38 (empty -> .)
+    $end            reduce using rule 38 (empty -> .)
+    RKEY            reduce using rule 38 (empty -> .)
+
+    else_cond                      shift and go to state 65
+    empty                          shift and go to state 67
+
+state 40
+
+    (47) elif_cond -> ELIF . LPAREN expression RPAREN LKEY statement RKEY elif_cond
+
+    LPAREN          shift and go to state 68
+
+
+state 41
+
+    (48) elif_cond -> empty .
+
+    ELSE            reduce using rule 48 (elif_cond -> empty .)
+    PRINT           reduce using rule 48 (elif_cond -> empty .)
+    FOR             reduce using rule 48 (elif_cond -> empty .)
+    WHILE           reduce using rule 48 (elif_cond -> empty .)
+    DO              reduce using rule 48 (elif_cond -> empty .)
+    ID              reduce using rule 48 (elif_cond -> empty .)
+    IF              reduce using rule 48 (elif_cond -> empty .)
+    BOOL            reduce using rule 48 (elif_cond -> empty .)
+    INT             reduce using rule 48 (elif_cond -> empty .)
+    FLOAT           reduce using rule 48 (elif_cond -> empty .)
+    STRING          reduce using rule 48 (elif_cond -> empty .)
+    $end            reduce using rule 48 (elif_cond -> empty .)
+    RKEY            reduce using rule 48 (elif_cond -> empty .)
+
+
+state 42
+
+    (35) for_stmt -> FOR LPAREN . declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY
+    (44) declare_assign_reg -> . type ID ASSIGN expression
+    (39) type -> . BOOL
+    (40) type -> . INT
+    (41) type -> . FLOAT
+    (42) type -> . STRING
+
+    BOOL            shift and go to state 20
+    INT             shift and go to state 21
+    FLOAT           shift and go to state 22
+    STRING          shift and go to state 23
+
+    declare_assign_reg             shift and go to state 69
+    type                           shift and go to state 70
+
+state 43
+
+    (36) while_stmt -> WHILE LPAREN . expression RPAREN LKEY statement RKEY
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 71
+    bool_val                       shift and go to state 35
+
+state 44
+
+    (37) while_stmt -> DO LKEY . statement RKEY WHILE LPAREN expression RPAREN FINISH
+    (2) statement -> . print_stmt FINISH statement
+    (3) statement -> . register_stmt FINISH statement
+    (4) statement -> . condition_stmt statement
+    (5) statement -> . for_stmt statement
+    (6) statement -> . while_stmt statement
+    (7) statement -> . empty
+    (30) print_stmt -> . PRINT expression
+    (31) register_stmt -> . declare_reg
+    (32) register_stmt -> . declare_assign_reg
+    (33) register_stmt -> . assign_reg
+    (34) condition_stmt -> . if_cond elif_cond else_cond
+    (35) for_stmt -> . FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY
+    (36) while_stmt -> . WHILE LPAREN expression RPAREN LKEY statement RKEY
+    (37) while_stmt -> . DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH
+    (38) empty -> .
+    (43) declare_reg -> . type ID
+    (44) declare_assign_reg -> . type ID ASSIGN expression
+    (45) assign_reg -> . ID ASSIGN expression
+    (46) if_cond -> . IF LPAREN expression RPAREN LKEY statement RKEY
+    (39) type -> . BOOL
+    (40) type -> . INT
+    (41) type -> . FLOAT
+    (42) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    RKEY            reduce using rule 38 (empty -> .)
+    ID              shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INT             shift and go to state 21
+    FLOAT           shift and go to state 22
+    STRING          shift and go to state 23
+
+    statement                      shift and go to state 72
+    print_stmt                     shift and go to state 3
+    register_stmt                  shift and go to state 4
+    condition_stmt                 shift and go to state 5
+    for_stmt                       shift and go to state 6
+    while_stmt                     shift and go to state 7
+    empty                          shift and go to state 8
+    declare_reg                    shift and go to state 10
+    declare_assign_reg             shift and go to state 11
+    assign_reg                     shift and go to state 12
+    if_cond                        shift and go to state 13
+    type                           shift and go to state 17
+
+state 45
+
+    (43) declare_reg -> type ID .
+    (44) declare_assign_reg -> type ID . ASSIGN expression
+
+    FINISH          reduce using rule 43 (declare_reg -> type ID .)
+    ASSIGN          shift and go to state 73
+
+
+state 46
+
+    (45) assign_reg -> ID ASSIGN . expression
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 74
+    bool_val                       shift and go to state 35
+
+state 47
+
+    (46) if_cond -> IF LPAREN . expression RPAREN LKEY statement RKEY
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 75
+    bool_val                       shift and go to state 35
+
+state 48
+
+    (2) statement -> print_stmt FINISH statement .
+
+    $end            reduce using rule 2 (statement -> print_stmt FINISH statement .)
+    RKEY            reduce using rule 2 (statement -> print_stmt FINISH statement .)
+
+
+state 49
+
+    (3) statement -> register_stmt FINISH statement .
+
+    $end            reduce using rule 3 (statement -> register_stmt FINISH statement .)
+    RKEY            reduce using rule 3 (statement -> register_stmt FINISH statement .)
+
+
+state 50
+
+    (8) expression -> expression AND . expression
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 76
+    bool_val                       shift and go to state 35
+
+state 51
+
+    (9) expression -> expression OR . expression
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 77
+    bool_val                       shift and go to state 35
+
+state 52
+
+    (10) expression -> expression PLUS . expression
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 78
+    bool_val                       shift and go to state 35
+
+state 53
+
+    (11) expression -> expression MINUS . expression
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 79
+    bool_val                       shift and go to state 35
+
+state 54
+
+    (12) expression -> expression MULT . expression
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 80
+    bool_val                       shift and go to state 35
+
+state 55
+
+    (13) expression -> expression DIV . expression
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 81
+    bool_val                       shift and go to state 35
+
+state 56
+
+    (14) expression -> expression EXP . expression
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 82
+    bool_val                       shift and go to state 35
+
+state 57
+
+    (15) expression -> expression EQUALS . expression
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 83
+    bool_val                       shift and go to state 35
+
+state 58
+
+    (16) expression -> expression NOT_EQUALS . expression
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 84
+    bool_val                       shift and go to state 35
+
+state 59
+
+    (17) expression -> expression EQ_MORE . expression
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 85
+    bool_val                       shift and go to state 35
+
+state 60
+
+    (18) expression -> expression EQ_LESS . expression
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 86
+    bool_val                       shift and go to state 35
+
+state 61
+
+    (19) expression -> expression MORE . expression
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 87
+    bool_val                       shift and go to state 35
+
+state 62
+
+    (20) expression -> expression LESS . expression
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 88
+    bool_val                       shift and go to state 35
+
+state 63
+
+    (29) expression -> MINUS expression .
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    AND             reduce using rule 29 (expression -> MINUS expression .)
+    OR              reduce using rule 29 (expression -> MINUS expression .)
+    PLUS            reduce using rule 29 (expression -> MINUS expression .)
+    MINUS           reduce using rule 29 (expression -> MINUS expression .)
+    MULT            reduce using rule 29 (expression -> MINUS expression .)
+    DIV             reduce using rule 29 (expression -> MINUS expression .)
+    EXP             reduce using rule 29 (expression -> MINUS expression .)
+    EQUALS          reduce using rule 29 (expression -> MINUS expression .)
+    NOT_EQUALS      reduce using rule 29 (expression -> MINUS expression .)
+    EQ_MORE         reduce using rule 29 (expression -> MINUS expression .)
+    EQ_LESS         reduce using rule 29 (expression -> MINUS expression .)
+    MORE            reduce using rule 29 (expression -> MINUS expression .)
+    LESS            reduce using rule 29 (expression -> MINUS expression .)
+    FINISH          reduce using rule 29 (expression -> MINUS expression .)
+    RPAREN          reduce using rule 29 (expression -> MINUS expression .)
+
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! PLUS            [ shift and go to state 52 ]
+  ! MINUS           [ shift and go to state 53 ]
+  ! MULT            [ shift and go to state 54 ]
+  ! DIV             [ shift and go to state 55 ]
+  ! EXP             [ shift and go to state 56 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 64
+
+    (28) expression -> LPAREN expression . RPAREN
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    RPAREN          shift and go to state 89
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 65
+
+    (34) condition_stmt -> if_cond elif_cond else_cond .
+
+    PRINT           reduce using rule 34 (condition_stmt -> if_cond elif_cond else_cond .)
+    FOR             reduce using rule 34 (condition_stmt -> if_cond elif_cond else_cond .)
+    WHILE           reduce using rule 34 (condition_stmt -> if_cond elif_cond else_cond .)
+    DO              reduce using rule 34 (condition_stmt -> if_cond elif_cond else_cond .)
+    ID              reduce using rule 34 (condition_stmt -> if_cond elif_cond else_cond .)
+    IF              reduce using rule 34 (condition_stmt -> if_cond elif_cond else_cond .)
+    BOOL            reduce using rule 34 (condition_stmt -> if_cond elif_cond else_cond .)
+    INT             reduce using rule 34 (condition_stmt -> if_cond elif_cond else_cond .)
+    FLOAT           reduce using rule 34 (condition_stmt -> if_cond elif_cond else_cond .)
+    STRING          reduce using rule 34 (condition_stmt -> if_cond elif_cond else_cond .)
+    $end            reduce using rule 34 (condition_stmt -> if_cond elif_cond else_cond .)
+    RKEY            reduce using rule 34 (condition_stmt -> if_cond elif_cond else_cond .)
+
+
+state 66
+
+    (49) else_cond -> ELSE . LKEY statement RKEY
+
+    LKEY            shift and go to state 90
+
+
+state 67
+
+    (50) else_cond -> empty .
+
+    PRINT           reduce using rule 50 (else_cond -> empty .)
+    FOR             reduce using rule 50 (else_cond -> empty .)
+    WHILE           reduce using rule 50 (else_cond -> empty .)
+    DO              reduce using rule 50 (else_cond -> empty .)
+    ID              reduce using rule 50 (else_cond -> empty .)
+    IF              reduce using rule 50 (else_cond -> empty .)
+    BOOL            reduce using rule 50 (else_cond -> empty .)
+    INT             reduce using rule 50 (else_cond -> empty .)
+    FLOAT           reduce using rule 50 (else_cond -> empty .)
+    STRING          reduce using rule 50 (else_cond -> empty .)
+    $end            reduce using rule 50 (else_cond -> empty .)
+    RKEY            reduce using rule 50 (else_cond -> empty .)
+
+
+state 68
+
+    (47) elif_cond -> ELIF LPAREN . expression RPAREN LKEY statement RKEY elif_cond
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 91
+    bool_val                       shift and go to state 35
+
+state 69
+
+    (35) for_stmt -> FOR LPAREN declare_assign_reg . FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY
+
+    FINISH          shift and go to state 92
+
+
+state 70
+
+    (44) declare_assign_reg -> type . ID ASSIGN expression
+
+    ID              shift and go to state 93
+
+
+state 71
+
+    (36) while_stmt -> WHILE LPAREN expression . RPAREN LKEY statement RKEY
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    RPAREN          shift and go to state 94
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 72
+
+    (37) while_stmt -> DO LKEY statement . RKEY WHILE LPAREN expression RPAREN FINISH
+
+    RKEY            shift and go to state 95
+
+
+state 73
+
+    (44) declare_assign_reg -> type ID ASSIGN . expression
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 96
+    bool_val                       shift and go to state 35
+
+state 74
+
+    (45) assign_reg -> ID ASSIGN expression .
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    FINISH          reduce using rule 45 (assign_reg -> ID ASSIGN expression .)
+    RPAREN          reduce using rule 45 (assign_reg -> ID ASSIGN expression .)
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 75
+
+    (46) if_cond -> IF LPAREN expression . RPAREN LKEY statement RKEY
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    RPAREN          shift and go to state 97
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 76
+
+    (8) expression -> expression AND expression .
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    AND             reduce using rule 8 (expression -> expression AND expression .)
+    OR              reduce using rule 8 (expression -> expression AND expression .)
+    FINISH          reduce using rule 8 (expression -> expression AND expression .)
+    RPAREN          reduce using rule 8 (expression -> expression AND expression .)
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+  ! PLUS            [ reduce using rule 8 (expression -> expression AND expression .) ]
+  ! MINUS           [ reduce using rule 8 (expression -> expression AND expression .) ]
+  ! MULT            [ reduce using rule 8 (expression -> expression AND expression .) ]
+  ! DIV             [ reduce using rule 8 (expression -> expression AND expression .) ]
+  ! EXP             [ reduce using rule 8 (expression -> expression AND expression .) ]
+  ! EQUALS          [ reduce using rule 8 (expression -> expression AND expression .) ]
+  ! NOT_EQUALS      [ reduce using rule 8 (expression -> expression AND expression .) ]
+  ! EQ_MORE         [ reduce using rule 8 (expression -> expression AND expression .) ]
+  ! EQ_LESS         [ reduce using rule 8 (expression -> expression AND expression .) ]
+  ! MORE            [ reduce using rule 8 (expression -> expression AND expression .) ]
+  ! LESS            [ reduce using rule 8 (expression -> expression AND expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+
+
+state 77
+
+    (9) expression -> expression OR expression .
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    AND             reduce using rule 9 (expression -> expression OR expression .)
+    OR              reduce using rule 9 (expression -> expression OR expression .)
+    FINISH          reduce using rule 9 (expression -> expression OR expression .)
+    RPAREN          reduce using rule 9 (expression -> expression OR expression .)
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+  ! PLUS            [ reduce using rule 9 (expression -> expression OR expression .) ]
+  ! MINUS           [ reduce using rule 9 (expression -> expression OR expression .) ]
+  ! MULT            [ reduce using rule 9 (expression -> expression OR expression .) ]
+  ! DIV             [ reduce using rule 9 (expression -> expression OR expression .) ]
+  ! EXP             [ reduce using rule 9 (expression -> expression OR expression .) ]
+  ! EQUALS          [ reduce using rule 9 (expression -> expression OR expression .) ]
+  ! NOT_EQUALS      [ reduce using rule 9 (expression -> expression OR expression .) ]
+  ! EQ_MORE         [ reduce using rule 9 (expression -> expression OR expression .) ]
+  ! EQ_LESS         [ reduce using rule 9 (expression -> expression OR expression .) ]
+  ! MORE            [ reduce using rule 9 (expression -> expression OR expression .) ]
+  ! LESS            [ reduce using rule 9 (expression -> expression OR expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+
+
+state 78
+
+    (10) expression -> expression PLUS expression .
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    AND             reduce using rule 10 (expression -> expression PLUS expression .)
+    OR              reduce using rule 10 (expression -> expression PLUS expression .)
+    PLUS            reduce using rule 10 (expression -> expression PLUS expression .)
+    MINUS           reduce using rule 10 (expression -> expression PLUS expression .)
+    EQUALS          reduce using rule 10 (expression -> expression PLUS expression .)
+    NOT_EQUALS      reduce using rule 10 (expression -> expression PLUS expression .)
+    EQ_MORE         reduce using rule 10 (expression -> expression PLUS expression .)
+    EQ_LESS         reduce using rule 10 (expression -> expression PLUS expression .)
+    MORE            reduce using rule 10 (expression -> expression PLUS expression .)
+    LESS            reduce using rule 10 (expression -> expression PLUS expression .)
+    FINISH          reduce using rule 10 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 10 (expression -> expression PLUS expression .)
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+
+  ! MULT            [ reduce using rule 10 (expression -> expression PLUS expression .) ]
+  ! DIV             [ reduce using rule 10 (expression -> expression PLUS expression .) ]
+  ! EXP             [ reduce using rule 10 (expression -> expression PLUS expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! PLUS            [ shift and go to state 52 ]
+  ! MINUS           [ shift and go to state 53 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 79
+
+    (11) expression -> expression MINUS expression .
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    AND             reduce using rule 11 (expression -> expression MINUS expression .)
+    OR              reduce using rule 11 (expression -> expression MINUS expression .)
+    PLUS            reduce using rule 11 (expression -> expression MINUS expression .)
+    MINUS           reduce using rule 11 (expression -> expression MINUS expression .)
+    EQUALS          reduce using rule 11 (expression -> expression MINUS expression .)
+    NOT_EQUALS      reduce using rule 11 (expression -> expression MINUS expression .)
+    EQ_MORE         reduce using rule 11 (expression -> expression MINUS expression .)
+    EQ_LESS         reduce using rule 11 (expression -> expression MINUS expression .)
+    MORE            reduce using rule 11 (expression -> expression MINUS expression .)
+    LESS            reduce using rule 11 (expression -> expression MINUS expression .)
+    FINISH          reduce using rule 11 (expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 11 (expression -> expression MINUS expression .)
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+
+  ! MULT            [ reduce using rule 11 (expression -> expression MINUS expression .) ]
+  ! DIV             [ reduce using rule 11 (expression -> expression MINUS expression .) ]
+  ! EXP             [ reduce using rule 11 (expression -> expression MINUS expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! PLUS            [ shift and go to state 52 ]
+  ! MINUS           [ shift and go to state 53 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 80
+
+    (12) expression -> expression MULT expression .
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    AND             reduce using rule 12 (expression -> expression MULT expression .)
+    OR              reduce using rule 12 (expression -> expression MULT expression .)
+    PLUS            reduce using rule 12 (expression -> expression MULT expression .)
+    MINUS           reduce using rule 12 (expression -> expression MULT expression .)
+    MULT            reduce using rule 12 (expression -> expression MULT expression .)
+    DIV             reduce using rule 12 (expression -> expression MULT expression .)
+    EQUALS          reduce using rule 12 (expression -> expression MULT expression .)
+    NOT_EQUALS      reduce using rule 12 (expression -> expression MULT expression .)
+    EQ_MORE         reduce using rule 12 (expression -> expression MULT expression .)
+    EQ_LESS         reduce using rule 12 (expression -> expression MULT expression .)
+    MORE            reduce using rule 12 (expression -> expression MULT expression .)
+    LESS            reduce using rule 12 (expression -> expression MULT expression .)
+    FINISH          reduce using rule 12 (expression -> expression MULT expression .)
+    RPAREN          reduce using rule 12 (expression -> expression MULT expression .)
+    EXP             shift and go to state 56
+
+  ! EXP             [ reduce using rule 12 (expression -> expression MULT expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! PLUS            [ shift and go to state 52 ]
+  ! MINUS           [ shift and go to state 53 ]
+  ! MULT            [ shift and go to state 54 ]
+  ! DIV             [ shift and go to state 55 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 81
+
+    (13) expression -> expression DIV expression .
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    AND             reduce using rule 13 (expression -> expression DIV expression .)
+    OR              reduce using rule 13 (expression -> expression DIV expression .)
+    PLUS            reduce using rule 13 (expression -> expression DIV expression .)
+    MINUS           reduce using rule 13 (expression -> expression DIV expression .)
+    MULT            reduce using rule 13 (expression -> expression DIV expression .)
+    DIV             reduce using rule 13 (expression -> expression DIV expression .)
+    EQUALS          reduce using rule 13 (expression -> expression DIV expression .)
+    NOT_EQUALS      reduce using rule 13 (expression -> expression DIV expression .)
+    EQ_MORE         reduce using rule 13 (expression -> expression DIV expression .)
+    EQ_LESS         reduce using rule 13 (expression -> expression DIV expression .)
+    MORE            reduce using rule 13 (expression -> expression DIV expression .)
+    LESS            reduce using rule 13 (expression -> expression DIV expression .)
+    FINISH          reduce using rule 13 (expression -> expression DIV expression .)
+    RPAREN          reduce using rule 13 (expression -> expression DIV expression .)
+    EXP             shift and go to state 56
+
+  ! EXP             [ reduce using rule 13 (expression -> expression DIV expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! PLUS            [ shift and go to state 52 ]
+  ! MINUS           [ shift and go to state 53 ]
+  ! MULT            [ shift and go to state 54 ]
+  ! DIV             [ shift and go to state 55 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 82
+
+    (14) expression -> expression EXP expression .
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    AND             reduce using rule 14 (expression -> expression EXP expression .)
+    OR              reduce using rule 14 (expression -> expression EXP expression .)
+    PLUS            reduce using rule 14 (expression -> expression EXP expression .)
+    MINUS           reduce using rule 14 (expression -> expression EXP expression .)
+    MULT            reduce using rule 14 (expression -> expression EXP expression .)
+    DIV             reduce using rule 14 (expression -> expression EXP expression .)
+    EXP             reduce using rule 14 (expression -> expression EXP expression .)
+    EQUALS          reduce using rule 14 (expression -> expression EXP expression .)
+    NOT_EQUALS      reduce using rule 14 (expression -> expression EXP expression .)
+    EQ_MORE         reduce using rule 14 (expression -> expression EXP expression .)
+    EQ_LESS         reduce using rule 14 (expression -> expression EXP expression .)
+    MORE            reduce using rule 14 (expression -> expression EXP expression .)
+    LESS            reduce using rule 14 (expression -> expression EXP expression .)
+    FINISH          reduce using rule 14 (expression -> expression EXP expression .)
+    RPAREN          reduce using rule 14 (expression -> expression EXP expression .)
+
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! PLUS            [ shift and go to state 52 ]
+  ! MINUS           [ shift and go to state 53 ]
+  ! MULT            [ shift and go to state 54 ]
+  ! DIV             [ shift and go to state 55 ]
+  ! EXP             [ shift and go to state 56 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 83
+
+    (15) expression -> expression EQUALS expression .
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    AND             reduce using rule 15 (expression -> expression EQUALS expression .)
+    OR              reduce using rule 15 (expression -> expression EQUALS expression .)
+    EQUALS          reduce using rule 15 (expression -> expression EQUALS expression .)
+    NOT_EQUALS      reduce using rule 15 (expression -> expression EQUALS expression .)
+    EQ_MORE         reduce using rule 15 (expression -> expression EQUALS expression .)
+    EQ_LESS         reduce using rule 15 (expression -> expression EQUALS expression .)
+    MORE            reduce using rule 15 (expression -> expression EQUALS expression .)
+    LESS            reduce using rule 15 (expression -> expression EQUALS expression .)
+    FINISH          reduce using rule 15 (expression -> expression EQUALS expression .)
+    RPAREN          reduce using rule 15 (expression -> expression EQUALS expression .)
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+
+  ! PLUS            [ reduce using rule 15 (expression -> expression EQUALS expression .) ]
+  ! MINUS           [ reduce using rule 15 (expression -> expression EQUALS expression .) ]
+  ! MULT            [ reduce using rule 15 (expression -> expression EQUALS expression .) ]
+  ! DIV             [ reduce using rule 15 (expression -> expression EQUALS expression .) ]
+  ! EXP             [ reduce using rule 15 (expression -> expression EQUALS expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 84
+
+    (16) expression -> expression NOT_EQUALS expression .
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    AND             reduce using rule 16 (expression -> expression NOT_EQUALS expression .)
+    OR              reduce using rule 16 (expression -> expression NOT_EQUALS expression .)
+    EQUALS          reduce using rule 16 (expression -> expression NOT_EQUALS expression .)
+    NOT_EQUALS      reduce using rule 16 (expression -> expression NOT_EQUALS expression .)
+    EQ_MORE         reduce using rule 16 (expression -> expression NOT_EQUALS expression .)
+    EQ_LESS         reduce using rule 16 (expression -> expression NOT_EQUALS expression .)
+    MORE            reduce using rule 16 (expression -> expression NOT_EQUALS expression .)
+    LESS            reduce using rule 16 (expression -> expression NOT_EQUALS expression .)
+    FINISH          reduce using rule 16 (expression -> expression NOT_EQUALS expression .)
+    RPAREN          reduce using rule 16 (expression -> expression NOT_EQUALS expression .)
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+
+  ! PLUS            [ reduce using rule 16 (expression -> expression NOT_EQUALS expression .) ]
+  ! MINUS           [ reduce using rule 16 (expression -> expression NOT_EQUALS expression .) ]
+  ! MULT            [ reduce using rule 16 (expression -> expression NOT_EQUALS expression .) ]
+  ! DIV             [ reduce using rule 16 (expression -> expression NOT_EQUALS expression .) ]
+  ! EXP             [ reduce using rule 16 (expression -> expression NOT_EQUALS expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 85
+
+    (17) expression -> expression EQ_MORE expression .
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    AND             reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    OR              reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    EQUALS          reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    NOT_EQUALS      reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    EQ_MORE         reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    EQ_LESS         reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    MORE            reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    LESS            reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    FINISH          reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    RPAREN          reduce using rule 17 (expression -> expression EQ_MORE expression .)
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+
+  ! PLUS            [ reduce using rule 17 (expression -> expression EQ_MORE expression .) ]
+  ! MINUS           [ reduce using rule 17 (expression -> expression EQ_MORE expression .) ]
+  ! MULT            [ reduce using rule 17 (expression -> expression EQ_MORE expression .) ]
+  ! DIV             [ reduce using rule 17 (expression -> expression EQ_MORE expression .) ]
+  ! EXP             [ reduce using rule 17 (expression -> expression EQ_MORE expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 86
+
+    (18) expression -> expression EQ_LESS expression .
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    AND             reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    OR              reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    EQUALS          reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    NOT_EQUALS      reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    EQ_MORE         reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    EQ_LESS         reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    MORE            reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    LESS            reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    FINISH          reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    RPAREN          reduce using rule 18 (expression -> expression EQ_LESS expression .)
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+
+  ! PLUS            [ reduce using rule 18 (expression -> expression EQ_LESS expression .) ]
+  ! MINUS           [ reduce using rule 18 (expression -> expression EQ_LESS expression .) ]
+  ! MULT            [ reduce using rule 18 (expression -> expression EQ_LESS expression .) ]
+  ! DIV             [ reduce using rule 18 (expression -> expression EQ_LESS expression .) ]
+  ! EXP             [ reduce using rule 18 (expression -> expression EQ_LESS expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 87
+
+    (19) expression -> expression MORE expression .
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    AND             reduce using rule 19 (expression -> expression MORE expression .)
+    OR              reduce using rule 19 (expression -> expression MORE expression .)
+    EQUALS          reduce using rule 19 (expression -> expression MORE expression .)
+    NOT_EQUALS      reduce using rule 19 (expression -> expression MORE expression .)
+    EQ_MORE         reduce using rule 19 (expression -> expression MORE expression .)
+    EQ_LESS         reduce using rule 19 (expression -> expression MORE expression .)
+    MORE            reduce using rule 19 (expression -> expression MORE expression .)
+    LESS            reduce using rule 19 (expression -> expression MORE expression .)
+    FINISH          reduce using rule 19 (expression -> expression MORE expression .)
+    RPAREN          reduce using rule 19 (expression -> expression MORE expression .)
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+
+  ! PLUS            [ reduce using rule 19 (expression -> expression MORE expression .) ]
+  ! MINUS           [ reduce using rule 19 (expression -> expression MORE expression .) ]
+  ! MULT            [ reduce using rule 19 (expression -> expression MORE expression .) ]
+  ! DIV             [ reduce using rule 19 (expression -> expression MORE expression .) ]
+  ! EXP             [ reduce using rule 19 (expression -> expression MORE expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 88
+
+    (20) expression -> expression LESS expression .
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    AND             reduce using rule 20 (expression -> expression LESS expression .)
+    OR              reduce using rule 20 (expression -> expression LESS expression .)
+    EQUALS          reduce using rule 20 (expression -> expression LESS expression .)
+    NOT_EQUALS      reduce using rule 20 (expression -> expression LESS expression .)
+    EQ_MORE         reduce using rule 20 (expression -> expression LESS expression .)
+    EQ_LESS         reduce using rule 20 (expression -> expression LESS expression .)
+    MORE            reduce using rule 20 (expression -> expression LESS expression .)
+    LESS            reduce using rule 20 (expression -> expression LESS expression .)
+    FINISH          reduce using rule 20 (expression -> expression LESS expression .)
+    RPAREN          reduce using rule 20 (expression -> expression LESS expression .)
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+
+  ! PLUS            [ reduce using rule 20 (expression -> expression LESS expression .) ]
+  ! MINUS           [ reduce using rule 20 (expression -> expression LESS expression .) ]
+  ! MULT            [ reduce using rule 20 (expression -> expression LESS expression .) ]
+  ! DIV             [ reduce using rule 20 (expression -> expression LESS expression .) ]
+  ! EXP             [ reduce using rule 20 (expression -> expression LESS expression .) ]
+  ! AND             [ shift and go to state 50 ]
+  ! OR              [ shift and go to state 51 ]
+  ! EQUALS          [ shift and go to state 57 ]
+  ! NOT_EQUALS      [ shift and go to state 58 ]
+  ! EQ_MORE         [ shift and go to state 59 ]
+  ! EQ_LESS         [ shift and go to state 60 ]
+  ! MORE            [ shift and go to state 61 ]
+  ! LESS            [ shift and go to state 62 ]
+
+
+state 89
+
+    (28) expression -> LPAREN expression RPAREN .
+
+    AND             reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    OR              reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    MULT            reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    DIV             reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    EXP             reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    EQUALS          reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    NOT_EQUALS      reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    EQ_MORE         reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    EQ_LESS         reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    MORE            reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    LESS            reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    FINISH          reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+
+
+state 90
+
+    (49) else_cond -> ELSE LKEY . statement RKEY
+    (2) statement -> . print_stmt FINISH statement
+    (3) statement -> . register_stmt FINISH statement
+    (4) statement -> . condition_stmt statement
+    (5) statement -> . for_stmt statement
+    (6) statement -> . while_stmt statement
+    (7) statement -> . empty
+    (30) print_stmt -> . PRINT expression
+    (31) register_stmt -> . declare_reg
+    (32) register_stmt -> . declare_assign_reg
+    (33) register_stmt -> . assign_reg
+    (34) condition_stmt -> . if_cond elif_cond else_cond
+    (35) for_stmt -> . FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY
+    (36) while_stmt -> . WHILE LPAREN expression RPAREN LKEY statement RKEY
+    (37) while_stmt -> . DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH
+    (38) empty -> .
+    (43) declare_reg -> . type ID
+    (44) declare_assign_reg -> . type ID ASSIGN expression
+    (45) assign_reg -> . ID ASSIGN expression
+    (46) if_cond -> . IF LPAREN expression RPAREN LKEY statement RKEY
+    (39) type -> . BOOL
+    (40) type -> . INT
+    (41) type -> . FLOAT
+    (42) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    RKEY            reduce using rule 38 (empty -> .)
+    ID              shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INT             shift and go to state 21
+    FLOAT           shift and go to state 22
+    STRING          shift and go to state 23
+
+    statement                      shift and go to state 98
+    print_stmt                     shift and go to state 3
+    register_stmt                  shift and go to state 4
+    condition_stmt                 shift and go to state 5
+    for_stmt                       shift and go to state 6
+    while_stmt                     shift and go to state 7
+    empty                          shift and go to state 8
+    declare_reg                    shift and go to state 10
+    declare_assign_reg             shift and go to state 11
+    assign_reg                     shift and go to state 12
+    if_cond                        shift and go to state 13
+    type                           shift and go to state 17
+
+state 91
+
+    (47) elif_cond -> ELIF LPAREN expression . RPAREN LKEY statement RKEY elif_cond
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    RPAREN          shift and go to state 99
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 92
+
+    (35) for_stmt -> FOR LPAREN declare_assign_reg FINISH . expression FINISH assign_reg RPAREN LKEY statement RKEY
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 100
+    bool_val                       shift and go to state 35
+
+state 93
+
+    (44) declare_assign_reg -> type ID . ASSIGN expression
+
+    ASSIGN          shift and go to state 73
+
+
+state 94
+
+    (36) while_stmt -> WHILE LPAREN expression RPAREN . LKEY statement RKEY
+
+    LKEY            shift and go to state 101
+
+
+state 95
+
+    (37) while_stmt -> DO LKEY statement RKEY . WHILE LPAREN expression RPAREN FINISH
+
+    WHILE           shift and go to state 102
+
+
+state 96
+
+    (44) declare_assign_reg -> type ID ASSIGN expression .
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    FINISH          reduce using rule 44 (declare_assign_reg -> type ID ASSIGN expression .)
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 97
+
+    (46) if_cond -> IF LPAREN expression RPAREN . LKEY statement RKEY
+
+    LKEY            shift and go to state 103
+
+
+state 98
+
+    (49) else_cond -> ELSE LKEY statement . RKEY
+
+    RKEY            shift and go to state 104
+
+
+state 99
+
+    (47) elif_cond -> ELIF LPAREN expression RPAREN . LKEY statement RKEY elif_cond
+
+    LKEY            shift and go to state 105
+
+
+state 100
+
+    (35) for_stmt -> FOR LPAREN declare_assign_reg FINISH expression . FINISH assign_reg RPAREN LKEY statement RKEY
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    FINISH          shift and go to state 106
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 101
+
+    (36) while_stmt -> WHILE LPAREN expression RPAREN LKEY . statement RKEY
+    (2) statement -> . print_stmt FINISH statement
+    (3) statement -> . register_stmt FINISH statement
+    (4) statement -> . condition_stmt statement
+    (5) statement -> . for_stmt statement
+    (6) statement -> . while_stmt statement
+    (7) statement -> . empty
+    (30) print_stmt -> . PRINT expression
+    (31) register_stmt -> . declare_reg
+    (32) register_stmt -> . declare_assign_reg
+    (33) register_stmt -> . assign_reg
+    (34) condition_stmt -> . if_cond elif_cond else_cond
+    (35) for_stmt -> . FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY
+    (36) while_stmt -> . WHILE LPAREN expression RPAREN LKEY statement RKEY
+    (37) while_stmt -> . DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH
+    (38) empty -> .
+    (43) declare_reg -> . type ID
+    (44) declare_assign_reg -> . type ID ASSIGN expression
+    (45) assign_reg -> . ID ASSIGN expression
+    (46) if_cond -> . IF LPAREN expression RPAREN LKEY statement RKEY
+    (39) type -> . BOOL
+    (40) type -> . INT
+    (41) type -> . FLOAT
+    (42) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    RKEY            reduce using rule 38 (empty -> .)
+    ID              shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INT             shift and go to state 21
+    FLOAT           shift and go to state 22
+    STRING          shift and go to state 23
+
+    statement                      shift and go to state 107
+    print_stmt                     shift and go to state 3
+    register_stmt                  shift and go to state 4
+    condition_stmt                 shift and go to state 5
+    for_stmt                       shift and go to state 6
+    while_stmt                     shift and go to state 7
+    empty                          shift and go to state 8
+    declare_reg                    shift and go to state 10
+    declare_assign_reg             shift and go to state 11
+    assign_reg                     shift and go to state 12
+    if_cond                        shift and go to state 13
+    type                           shift and go to state 17
+
+state 102
+
+    (37) while_stmt -> DO LKEY statement RKEY WHILE . LPAREN expression RPAREN FINISH
+
+    LPAREN          shift and go to state 108
+
+
+state 103
+
+    (46) if_cond -> IF LPAREN expression RPAREN LKEY . statement RKEY
+    (2) statement -> . print_stmt FINISH statement
+    (3) statement -> . register_stmt FINISH statement
+    (4) statement -> . condition_stmt statement
+    (5) statement -> . for_stmt statement
+    (6) statement -> . while_stmt statement
+    (7) statement -> . empty
+    (30) print_stmt -> . PRINT expression
+    (31) register_stmt -> . declare_reg
+    (32) register_stmt -> . declare_assign_reg
+    (33) register_stmt -> . assign_reg
+    (34) condition_stmt -> . if_cond elif_cond else_cond
+    (35) for_stmt -> . FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY
+    (36) while_stmt -> . WHILE LPAREN expression RPAREN LKEY statement RKEY
+    (37) while_stmt -> . DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH
+    (38) empty -> .
+    (43) declare_reg -> . type ID
+    (44) declare_assign_reg -> . type ID ASSIGN expression
+    (45) assign_reg -> . ID ASSIGN expression
+    (46) if_cond -> . IF LPAREN expression RPAREN LKEY statement RKEY
+    (39) type -> . BOOL
+    (40) type -> . INT
+    (41) type -> . FLOAT
+    (42) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    RKEY            reduce using rule 38 (empty -> .)
+    ID              shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INT             shift and go to state 21
+    FLOAT           shift and go to state 22
+    STRING          shift and go to state 23
+
+    statement                      shift and go to state 109
+    print_stmt                     shift and go to state 3
+    register_stmt                  shift and go to state 4
+    condition_stmt                 shift and go to state 5
+    for_stmt                       shift and go to state 6
+    while_stmt                     shift and go to state 7
+    empty                          shift and go to state 8
+    declare_reg                    shift and go to state 10
+    declare_assign_reg             shift and go to state 11
+    assign_reg                     shift and go to state 12
+    if_cond                        shift and go to state 13
+    type                           shift and go to state 17
+
+state 104
+
+    (49) else_cond -> ELSE LKEY statement RKEY .
+
+    PRINT           reduce using rule 49 (else_cond -> ELSE LKEY statement RKEY .)
+    FOR             reduce using rule 49 (else_cond -> ELSE LKEY statement RKEY .)
+    WHILE           reduce using rule 49 (else_cond -> ELSE LKEY statement RKEY .)
+    DO              reduce using rule 49 (else_cond -> ELSE LKEY statement RKEY .)
+    ID              reduce using rule 49 (else_cond -> ELSE LKEY statement RKEY .)
+    IF              reduce using rule 49 (else_cond -> ELSE LKEY statement RKEY .)
+    BOOL            reduce using rule 49 (else_cond -> ELSE LKEY statement RKEY .)
+    INT             reduce using rule 49 (else_cond -> ELSE LKEY statement RKEY .)
+    FLOAT           reduce using rule 49 (else_cond -> ELSE LKEY statement RKEY .)
+    STRING          reduce using rule 49 (else_cond -> ELSE LKEY statement RKEY .)
+    $end            reduce using rule 49 (else_cond -> ELSE LKEY statement RKEY .)
+    RKEY            reduce using rule 49 (else_cond -> ELSE LKEY statement RKEY .)
+
+
+state 105
+
+    (47) elif_cond -> ELIF LPAREN expression RPAREN LKEY . statement RKEY elif_cond
+    (2) statement -> . print_stmt FINISH statement
+    (3) statement -> . register_stmt FINISH statement
+    (4) statement -> . condition_stmt statement
+    (5) statement -> . for_stmt statement
+    (6) statement -> . while_stmt statement
+    (7) statement -> . empty
+    (30) print_stmt -> . PRINT expression
+    (31) register_stmt -> . declare_reg
+    (32) register_stmt -> . declare_assign_reg
+    (33) register_stmt -> . assign_reg
+    (34) condition_stmt -> . if_cond elif_cond else_cond
+    (35) for_stmt -> . FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY
+    (36) while_stmt -> . WHILE LPAREN expression RPAREN LKEY statement RKEY
+    (37) while_stmt -> . DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH
+    (38) empty -> .
+    (43) declare_reg -> . type ID
+    (44) declare_assign_reg -> . type ID ASSIGN expression
+    (45) assign_reg -> . ID ASSIGN expression
+    (46) if_cond -> . IF LPAREN expression RPAREN LKEY statement RKEY
+    (39) type -> . BOOL
+    (40) type -> . INT
+    (41) type -> . FLOAT
+    (42) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    RKEY            reduce using rule 38 (empty -> .)
+    ID              shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INT             shift and go to state 21
+    FLOAT           shift and go to state 22
+    STRING          shift and go to state 23
+
+    statement                      shift and go to state 110
+    print_stmt                     shift and go to state 3
+    register_stmt                  shift and go to state 4
+    condition_stmt                 shift and go to state 5
+    for_stmt                       shift and go to state 6
+    while_stmt                     shift and go to state 7
+    empty                          shift and go to state 8
+    declare_reg                    shift and go to state 10
+    declare_assign_reg             shift and go to state 11
+    assign_reg                     shift and go to state 12
+    if_cond                        shift and go to state 13
+    type                           shift and go to state 17
+
+state 106
+
+    (35) for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH . assign_reg RPAREN LKEY statement RKEY
+    (45) assign_reg -> . ID ASSIGN expression
+
+    ID              shift and go to state 18
+
+    assign_reg                     shift and go to state 111
+
+state 107
+
+    (36) while_stmt -> WHILE LPAREN expression RPAREN LKEY statement . RKEY
+
+    RKEY            shift and go to state 112
+
+
+state 108
+
+    (37) while_stmt -> DO LKEY statement RKEY WHILE LPAREN . expression RPAREN FINISH
+    (8) expression -> . expression AND expression
+    (9) expression -> . expression OR expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression MULT expression
+    (13) expression -> . expression DIV expression
+    (14) expression -> . expression EXP expression
+    (15) expression -> . expression EQUALS expression
+    (16) expression -> . expression NOT_EQUALS expression
+    (17) expression -> . expression EQ_MORE expression
+    (18) expression -> . expression EQ_LESS expression
+    (19) expression -> . expression MORE expression
+    (20) expression -> . expression LESS expression
+    (21) expression -> . ID
+    (22) expression -> . FLOAT_VAL
+    (23) expression -> . INT_VAL
+    (24) expression -> . STR_VAL
+    (25) expression -> . bool_val
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . MINUS expression
+    (26) bool_val -> . TRUE
+    (27) bool_val -> . FALSE
+
+    ID              shift and go to state 31
+    FLOAT_VAL       shift and go to state 32
+    INT_VAL         shift and go to state 33
+    STR_VAL         shift and go to state 34
+    LPAREN          shift and go to state 36
+    MINUS           shift and go to state 30
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 113
+    bool_val                       shift and go to state 35
+
+state 109
+
+    (46) if_cond -> IF LPAREN expression RPAREN LKEY statement . RKEY
+
+    RKEY            shift and go to state 114
+
+
+state 110
+
+    (47) elif_cond -> ELIF LPAREN expression RPAREN LKEY statement . RKEY elif_cond
+
+    RKEY            shift and go to state 115
+
+
+state 111
+
+    (35) for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg . RPAREN LKEY statement RKEY
+
+    RPAREN          shift and go to state 116
+
+
+state 112
+
+    (36) while_stmt -> WHILE LPAREN expression RPAREN LKEY statement RKEY .
+
+    PRINT           reduce using rule 36 (while_stmt -> WHILE LPAREN expression RPAREN LKEY statement RKEY .)
+    FOR             reduce using rule 36 (while_stmt -> WHILE LPAREN expression RPAREN LKEY statement RKEY .)
+    WHILE           reduce using rule 36 (while_stmt -> WHILE LPAREN expression RPAREN LKEY statement RKEY .)
+    DO              reduce using rule 36 (while_stmt -> WHILE LPAREN expression RPAREN LKEY statement RKEY .)
+    ID              reduce using rule 36 (while_stmt -> WHILE LPAREN expression RPAREN LKEY statement RKEY .)
+    IF              reduce using rule 36 (while_stmt -> WHILE LPAREN expression RPAREN LKEY statement RKEY .)
+    BOOL            reduce using rule 36 (while_stmt -> WHILE LPAREN expression RPAREN LKEY statement RKEY .)
+    INT             reduce using rule 36 (while_stmt -> WHILE LPAREN expression RPAREN LKEY statement RKEY .)
+    FLOAT           reduce using rule 36 (while_stmt -> WHILE LPAREN expression RPAREN LKEY statement RKEY .)
+    STRING          reduce using rule 36 (while_stmt -> WHILE LPAREN expression RPAREN LKEY statement RKEY .)
+    $end            reduce using rule 36 (while_stmt -> WHILE LPAREN expression RPAREN LKEY statement RKEY .)
+    RKEY            reduce using rule 36 (while_stmt -> WHILE LPAREN expression RPAREN LKEY statement RKEY .)
+
+
+state 113
+
+    (37) while_stmt -> DO LKEY statement RKEY WHILE LPAREN expression . RPAREN FINISH
+    (8) expression -> expression . AND expression
+    (9) expression -> expression . OR expression
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . MULT expression
+    (13) expression -> expression . DIV expression
+    (14) expression -> expression . EXP expression
+    (15) expression -> expression . EQUALS expression
+    (16) expression -> expression . NOT_EQUALS expression
+    (17) expression -> expression . EQ_MORE expression
+    (18) expression -> expression . EQ_LESS expression
+    (19) expression -> expression . MORE expression
+    (20) expression -> expression . LESS expression
+
+    RPAREN          shift and go to state 117
+    AND             shift and go to state 50
+    OR              shift and go to state 51
+    PLUS            shift and go to state 52
+    MINUS           shift and go to state 53
+    MULT            shift and go to state 54
+    DIV             shift and go to state 55
+    EXP             shift and go to state 56
+    EQUALS          shift and go to state 57
+    NOT_EQUALS      shift and go to state 58
+    EQ_MORE         shift and go to state 59
+    EQ_LESS         shift and go to state 60
+    MORE            shift and go to state 61
+    LESS            shift and go to state 62
+
+
+state 114
+
+    (46) if_cond -> IF LPAREN expression RPAREN LKEY statement RKEY .
+
+    ELIF            reduce using rule 46 (if_cond -> IF LPAREN expression RPAREN LKEY statement RKEY .)
+    ELSE            reduce using rule 46 (if_cond -> IF LPAREN expression RPAREN LKEY statement RKEY .)
+    PRINT           reduce using rule 46 (if_cond -> IF LPAREN expression RPAREN LKEY statement RKEY .)
+    FOR             reduce using rule 46 (if_cond -> IF LPAREN expression RPAREN LKEY statement RKEY .)
+    WHILE           reduce using rule 46 (if_cond -> IF LPAREN expression RPAREN LKEY statement RKEY .)
+    DO              reduce using rule 46 (if_cond -> IF LPAREN expression RPAREN LKEY statement RKEY .)
+    ID              reduce using rule 46 (if_cond -> IF LPAREN expression RPAREN LKEY statement RKEY .)
+    IF              reduce using rule 46 (if_cond -> IF LPAREN expression RPAREN LKEY statement RKEY .)
+    BOOL            reduce using rule 46 (if_cond -> IF LPAREN expression RPAREN LKEY statement RKEY .)
+    INT             reduce using rule 46 (if_cond -> IF LPAREN expression RPAREN LKEY statement RKEY .)
+    FLOAT           reduce using rule 46 (if_cond -> IF LPAREN expression RPAREN LKEY statement RKEY .)
+    STRING          reduce using rule 46 (if_cond -> IF LPAREN expression RPAREN LKEY statement RKEY .)
+    $end            reduce using rule 46 (if_cond -> IF LPAREN expression RPAREN LKEY statement RKEY .)
+    RKEY            reduce using rule 46 (if_cond -> IF LPAREN expression RPAREN LKEY statement RKEY .)
+
+
+state 115
+
+    (47) elif_cond -> ELIF LPAREN expression RPAREN LKEY statement RKEY . elif_cond
+    (47) elif_cond -> . ELIF LPAREN expression RPAREN LKEY statement RKEY elif_cond
+    (48) elif_cond -> . empty
+    (38) empty -> .
+
+    ELIF            shift and go to state 40
+    ELSE            reduce using rule 38 (empty -> .)
+    PRINT           reduce using rule 38 (empty -> .)
+    FOR             reduce using rule 38 (empty -> .)
+    WHILE           reduce using rule 38 (empty -> .)
+    DO              reduce using rule 38 (empty -> .)
+    ID              reduce using rule 38 (empty -> .)
+    IF              reduce using rule 38 (empty -> .)
+    BOOL            reduce using rule 38 (empty -> .)
+    INT             reduce using rule 38 (empty -> .)
+    FLOAT           reduce using rule 38 (empty -> .)
+    STRING          reduce using rule 38 (empty -> .)
+    $end            reduce using rule 38 (empty -> .)
+    RKEY            reduce using rule 38 (empty -> .)
+
+    elif_cond                      shift and go to state 118
+    empty                          shift and go to state 41
+
+state 116
+
+    (35) for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN . LKEY statement RKEY
+
+    LKEY            shift and go to state 119
+
+
+state 117
+
+    (37) while_stmt -> DO LKEY statement RKEY WHILE LPAREN expression RPAREN . FINISH
+
+    FINISH          shift and go to state 120
+
+
+state 118
+
+    (47) elif_cond -> ELIF LPAREN expression RPAREN LKEY statement RKEY elif_cond .
+
+    ELSE            reduce using rule 47 (elif_cond -> ELIF LPAREN expression RPAREN LKEY statement RKEY elif_cond .)
+    PRINT           reduce using rule 47 (elif_cond -> ELIF LPAREN expression RPAREN LKEY statement RKEY elif_cond .)
+    FOR             reduce using rule 47 (elif_cond -> ELIF LPAREN expression RPAREN LKEY statement RKEY elif_cond .)
+    WHILE           reduce using rule 47 (elif_cond -> ELIF LPAREN expression RPAREN LKEY statement RKEY elif_cond .)
+    DO              reduce using rule 47 (elif_cond -> ELIF LPAREN expression RPAREN LKEY statement RKEY elif_cond .)
+    ID              reduce using rule 47 (elif_cond -> ELIF LPAREN expression RPAREN LKEY statement RKEY elif_cond .)
+    IF              reduce using rule 47 (elif_cond -> ELIF LPAREN expression RPAREN LKEY statement RKEY elif_cond .)
+    BOOL            reduce using rule 47 (elif_cond -> ELIF LPAREN expression RPAREN LKEY statement RKEY elif_cond .)
+    INT             reduce using rule 47 (elif_cond -> ELIF LPAREN expression RPAREN LKEY statement RKEY elif_cond .)
+    FLOAT           reduce using rule 47 (elif_cond -> ELIF LPAREN expression RPAREN LKEY statement RKEY elif_cond .)
+    STRING          reduce using rule 47 (elif_cond -> ELIF LPAREN expression RPAREN LKEY statement RKEY elif_cond .)
+    $end            reduce using rule 47 (elif_cond -> ELIF LPAREN expression RPAREN LKEY statement RKEY elif_cond .)
+    RKEY            reduce using rule 47 (elif_cond -> ELIF LPAREN expression RPAREN LKEY statement RKEY elif_cond .)
+
+
+state 119
+
+    (35) for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY . statement RKEY
+    (2) statement -> . print_stmt FINISH statement
+    (3) statement -> . register_stmt FINISH statement
+    (4) statement -> . condition_stmt statement
+    (5) statement -> . for_stmt statement
+    (6) statement -> . while_stmt statement
+    (7) statement -> . empty
+    (30) print_stmt -> . PRINT expression
+    (31) register_stmt -> . declare_reg
+    (32) register_stmt -> . declare_assign_reg
+    (33) register_stmt -> . assign_reg
+    (34) condition_stmt -> . if_cond elif_cond else_cond
+    (35) for_stmt -> . FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY
+    (36) while_stmt -> . WHILE LPAREN expression RPAREN LKEY statement RKEY
+    (37) while_stmt -> . DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH
+    (38) empty -> .
+    (43) declare_reg -> . type ID
+    (44) declare_assign_reg -> . type ID ASSIGN expression
+    (45) assign_reg -> . ID ASSIGN expression
+    (46) if_cond -> . IF LPAREN expression RPAREN LKEY statement RKEY
+    (39) type -> . BOOL
+    (40) type -> . INT
+    (41) type -> . FLOAT
+    (42) type -> . STRING
+
+    PRINT           shift and go to state 9
+    FOR             shift and go to state 14
+    WHILE           shift and go to state 15
+    DO              shift and go to state 16
+    RKEY            reduce using rule 38 (empty -> .)
+    ID              shift and go to state 18
+    IF              shift and go to state 19
+    BOOL            shift and go to state 20
+    INT             shift and go to state 21
+    FLOAT           shift and go to state 22
+    STRING          shift and go to state 23
+
+    declare_assign_reg             shift and go to state 11
+    assign_reg                     shift and go to state 12
+    statement                      shift and go to state 121
+    print_stmt                     shift and go to state 3
+    register_stmt                  shift and go to state 4
+    condition_stmt                 shift and go to state 5
+    for_stmt                       shift and go to state 6
+    while_stmt                     shift and go to state 7
+    empty                          shift and go to state 8
+    declare_reg                    shift and go to state 10
+    if_cond                        shift and go to state 13
+    type                           shift and go to state 17
+
+state 120
+
+    (37) while_stmt -> DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH .
+
+    PRINT           reduce using rule 37 (while_stmt -> DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH .)
+    FOR             reduce using rule 37 (while_stmt -> DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH .)
+    WHILE           reduce using rule 37 (while_stmt -> DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH .)
+    DO              reduce using rule 37 (while_stmt -> DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH .)
+    ID              reduce using rule 37 (while_stmt -> DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH .)
+    IF              reduce using rule 37 (while_stmt -> DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH .)
+    BOOL            reduce using rule 37 (while_stmt -> DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH .)
+    INT             reduce using rule 37 (while_stmt -> DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH .)
+    FLOAT           reduce using rule 37 (while_stmt -> DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH .)
+    STRING          reduce using rule 37 (while_stmt -> DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH .)
+    $end            reduce using rule 37 (while_stmt -> DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH .)
+    RKEY            reduce using rule 37 (while_stmt -> DO LKEY statement RKEY WHILE LPAREN expression RPAREN FINISH .)
+
+
+state 121
+
+    (35) for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement . RKEY
+
+    RKEY            shift and go to state 122
+
+
+state 122
+
+    (35) for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY .
+
+    PRINT           reduce using rule 35 (for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY .)
+    FOR             reduce using rule 35 (for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY .)
+    WHILE           reduce using rule 35 (for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY .)
+    DO              reduce using rule 35 (for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY .)
+    ID              reduce using rule 35 (for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY .)
+    IF              reduce using rule 35 (for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY .)
+    BOOL            reduce using rule 35 (for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY .)
+    INT             reduce using rule 35 (for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY .)
+    FLOAT           reduce using rule 35 (for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY .)
+    STRING          reduce using rule 35 (for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY .)
+    $end            reduce using rule 35 (for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY .)
+    RKEY            reduce using rule 35 (for_stmt -> FOR LPAREN declare_assign_reg FINISH expression FINISH assign_reg RPAREN LKEY statement RKEY .)
+
